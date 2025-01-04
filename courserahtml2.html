@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galerie Interactive</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #image {
+            width: 400px;
+            height: 250px;
+            border: 2px solid black;
+            margin: 20px auto;
+            text-align: center;
+            line-height: 250px;
+            background-size: cover;
+            background-position: center;
+            color: #333;
+        }
+        .gallery {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .gallery img {
+            width: 120px;
+            height: 80px;
+            border: 2px solid #ddd;
+            cursor: pointer;
+        }
+        .gallery img:focus {
+            border-color: blue;
+            outline: none;
+        }
+    </style>
+</head>
+<body onload="initializeGallery()">
+    <h1>Galerie Interactive</h1>
+    <div id="image">Passez la souris ou utilisez le clavier pour interagir avec les images.</div>
+    <div class="gallery">
+        <img src="https://via.placeholder.com/120x80.png?text=Image+1" alt="Description de l'image 1" tabindex="0" onfocus="updateImage(this)" onblur="resetImage()" onmouseover="updateImage(this)" onmouseleave="resetImage()">
+        <img src="https://via.placeholder.com/120x80.png?text=Image+2" alt="Description de l'image 2" tabindex="0" onfocus="updateImage(this)" onblur="resetImage()" onmouseover="updateImage(this)" onmouseleave="resetImage()">
+        <img src="https://via.placeholder.com/120x80.png?text=Image+3" alt="Description de l'image 3" tabindex="0" onfocus="updateImage(this)" onblur="resetImage()" onmouseover="updateImage(this)" onmouseleave="resetImage()">
+        <img src="https://via.placeholder.com/120x80.png?text=Image+4" alt="Description de l'image 4" tabindex="0" onfocus="updateImage(this)" onblur="resetImage()" onmouseover="updateImage(this)" onmouseleave="resetImage()">
+        <img src="https://via.placeholder.com/120x80.png?text=Image+5" alt="Description de l'image 5" tabindex="0" onfocus="updateImage(this)" onblur="resetImage()" onmouseover="updateImage(this)" onmouseleave="resetImage()">
+        <img src="https://via.placeholder.com/120x80.png?text=Image+6" alt="Description de l'image 6" tabindex="0" onfocus="updateImage(this)" onblur="resetImage()" onmouseover="updateImage(this)" onmouseleave="resetImage()">
+    </div>
+    <script>
+        function updateImage(img) {
+            const previewDiv = document.getElementById("image");
+            previewDiv.style.backgroundImage = `url('${img.src}')`;
+            previewDiv.textContent = img.alt;
+        }
+
+  
+        function resetImage() {
+            const previewDiv = document.getElementById("image");
+            previewDiv.style.backgroundImage = "none";
+            previewDiv.textContent = "Passez la souris ou utilisez le clavier pour interagir avec les images.";
+        }
+
+       
+        function initializeGallery() {
+            console.log("Galerie initialisee");
+            const images = document.querySelectorAll(".gallery img");
+            images.forEach((img, index) => {
+                img.setAttribute("tabindex", index + 1);
+            });
+        }
+    </script>
+</body>
+</html>
